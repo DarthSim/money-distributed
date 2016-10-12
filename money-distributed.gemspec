@@ -31,4 +31,5 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'money'
   spec.add_dependency 'redis'
   spec.add_dependency 'connection_pool'
+  spec.add_dependency 'json'
 end
