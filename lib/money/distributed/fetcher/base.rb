@@ -10,12 +10,13 @@ class Money
         end
 
         def fetch
-          currencies = exchange_rates.keys
+          rates = exchange_rates
+          currencies = rates.keys
 
           currencies.each { |cur| add_rate(cur, cur, 1) }
 
           currencies.combination(2).each do |curr1, curr2|
-            rate = exchange_rates[curr2] / exchange_rates[curr1]
+            rate = rates[curr2] / rates[curr1]
             add_rate(curr1, curr2, rate)
           end
         end
