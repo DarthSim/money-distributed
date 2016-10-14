@@ -4,7 +4,7 @@ class Money
   module Distributed
     module Fetcher
       # Base class for reates fetchers
-      class Base
+      module Base
         def initialize(bank = nil)
           @bank = bank || Money.default_bank
         end

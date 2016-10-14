@@ -6,7 +6,9 @@ class Money
   module Distributed
     module Fetcher
       # Fetcher that loads rates from a file
-      class File < Base
+      class File
+        include Base
+
         def initialize(file_path, bank = nil)
           super(bank)
           @file_path = file_path
