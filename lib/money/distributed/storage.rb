@@ -77,7 +77,7 @@ class Money
       def retrieve_rates
         @redis.exec do |r|
           r.hgetall(REDIS_KEY).each_with_object(@cache) do |(key, val), h|
-            h[key] = BigDecimal.new(val)
+            h[key] = BigDecimal(val)
           end
         end
         @cache_updated_at = Time.now

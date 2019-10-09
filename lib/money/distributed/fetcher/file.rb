@@ -19,7 +19,7 @@ class Money
         def exchange_rates
           open(@file_path).read.split("\n").each_with_object({}) do |line, h|
             code_rate = line.split(' ')
-            h[code_rate[0]] = BigDecimal.new(code_rate[1])
+            h[code_rate[0]] = BigDecimal(code_rate[1])
           end
         end
       end
