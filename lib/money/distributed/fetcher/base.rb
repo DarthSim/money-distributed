@@ -5,7 +5,7 @@ require 'money'
 class Money
   module Distributed
     module Fetcher
-      # Base class for reates fetchers
+      # Base class for rates fetchers
       module Base
         def initialize(bank = nil)
           @bank = bank || Money.default_bank
