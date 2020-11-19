@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'money'
 
 class Money
@@ -26,6 +28,7 @@ class Money
         def add_rate(from_iso, to_iso, rate)
           @bank.add_rate(from_iso, to_iso, rate.round(4))
           return if from_iso == to_iso
+
           @bank.add_rate(to_iso, from_iso, (1 / rate).round(4))
         end
 
