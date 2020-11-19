@@ -31,7 +31,7 @@ class Money
         cached_rates[key_for(iso_from, iso_to)]
       end
 
-      def each_rate
+      def each_rate(&block)
         enum = Enumerator.new do |yielder|
           cached_rates.each do |key, rate|
             iso_from, iso_to = key.split(INDEX_KEY_SEPARATOR)
