@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 describe Money::Distributed::Fetcher::File do
-  let(:file_path) { File.expand_path('../../fixtures/rates.txt', __FILE__) }
+  let(:file_path) { File.expand_path('../fixtures/rates.txt', __dir__) }
   let(:bank) { double(add_rate: true) }
 
   subject { described_class.new(file_path, bank) }

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'bigdecimal'
 require 'money/distributed/redis'
 
@@ -5,8 +7,8 @@ class Money
   module Distributed
     # Storage for `Money::Bank::VariableExchange` that stores rates in Redis
     class Storage
-      INDEX_KEY_SEPARATOR = '_TO_'.freeze
-      REDIS_KEY = 'money_rates'.freeze
+      INDEX_KEY_SEPARATOR = '_TO_'
+      REDIS_KEY = 'money_rates'
 
       def initialize(redis, cache_ttl = nil)
         @redis = Money::Distributed::Redis.new(redis)
@@ -29,7 +31,7 @@ class Money
         cached_rates[key_for(iso_from, iso_to)]
       end
 
-      def each_rate
+      def each_rate(&block)
         enum = Enumerator.new do |yielder|
           cached_rates.each do |key, rate|
             iso_from, iso_to = key.split(INDEX_KEY_SEPARATOR)
@@ -64,6 +66,7 @@ class Money
 
       def cache_outdated?
         return false unless @cache_ttl
+
         @cache_updated_at.nil? ||
           @cache_updated_at < Time.now - @cache_ttl
       end

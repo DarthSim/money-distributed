@@ -1,6 +1,6 @@
-# coding: utf-8
+# frozen_string_literal: true
 
-lib = File.expand_path('../lib', __FILE__)
+lib = File.expand_path('lib', __dir__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'money/distributed/version'
 
@@ -14,6 +14,8 @@ Gem::Specification.new do |spec|
   spec.homepage      = 'https://github.com/DarthSim/money-distributed'
   spec.license       = 'MIT'
 
+  spec.required_ruby_version = '~> 2.5' # rubocop:disable Gemspec/RequiredRubyVersion
+
   spec.files = `git ls-files -z`.split("\x0").reject do |f|
     f.match(%r{^(test|spec|features)/})
   end
@@ -22,12 +24,12 @@ Gem::Specification.new do |spec|
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ['lib']
 
-  spec.add_development_dependency 'rake', '~> 10.0'
-  spec.add_development_dependency 'rspec', '>= 3.0.0'
+  spec.add_development_dependency 'rake'
+  spec.add_development_dependency 'rspec'
+  spec.add_development_dependency 'rubocop'
   spec.add_development_dependency 'timecop'
-  spec.add_development_dependency 'rubocop', '~> 0.49.0'
 
+  spec.add_dependency 'connection_pool'
   spec.add_dependency 'money', '>= 6.6.0'
   spec.add_dependency 'redis'
-  spec.add_dependency 'connection_pool'
 end
