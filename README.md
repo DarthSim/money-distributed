@@ -32,13 +32,30 @@ oxr.app_id = Rails.application.credentials.dig(:oxr, :api_key)
 
 # fetch fresh rates if cache is empty so we don't boot the app without available rates
 # we fetch those async to avoid the app crashing on boot due to an API error of OXR
-Cron::MoneyUpdateRatesWorker.perform_async if oxr.rates.blank?
+MoneyUpdateRatesWorker.perform_async if oxr.rates.blank?
 
 # to use the free plan of OXR, we must default to USD
 oxr.source = 'USD'
 
 Money.default_bank = oxr
 ```
+
+The mentioned worker:
+```ruby
+# app/workers/money_update_rates_worker.rb
+
+class MoneyUpdateRatesWorker
+  include Sidekiq::Worker
+
+  def perform
+    Money.default_bank.refresh_rates # pull from remote
+    Money.default_bank.update_rates  # update cache
+  end
+end
+```
+You might want to set up a cron job to trigger this worker regularly.
+Set the schedule to a shorter time-window than the configured TTL of the exchange rates.
+This avoids, that rates are expired and have to be fetched from remote during a request.
 
 
 You probably want to install the following gems:
