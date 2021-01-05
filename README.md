@@ -39,3 +39,14 @@ oxr.source = 'USD'
 
 Money.default_bank = oxr
 ```
+
+
+You probably want to install the following gems:
+```ruby
+# Gemfile
+
+# payments
+gem 'money'
+gem 'money-distributed', git: 'git@github.com:swiknaba/money-distributed', branch: :master
+gem 'money-open-exchange-rates'
+```
