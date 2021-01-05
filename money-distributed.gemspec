@@ -14,7 +14,7 @@ Gem::Specification.new do |spec|
   spec.homepage      = 'https://github.com/DarthSim/money-distributed'
   spec.license       = 'MIT'
 
-  spec.required_ruby_version = '>= 2.5' # rubocop:disable Gemspec/RequiredRubyVersion
+  spec.required_ruby_version = '>= 2.5'
 
   spec.files = `git ls-files -z`.split("\x0").reject do |f|
     f.match(%r{^(test|spec|features)/})

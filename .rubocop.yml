@@ -1,2 +1,5 @@
 Style/FileName:
   Enabled: false
+
+Gemspec/RequiredRubyVersion:
+ Enabled: false
