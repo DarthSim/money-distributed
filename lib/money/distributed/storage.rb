@@ -80,6 +80,8 @@ class Money
       def retrieve_rates
         @redis.exec do |r|
           r.hgetall(REDIS_KEY).each_with_object(@cache) do |(key, val), h|
+            next if val.nil? || val == ''
+
             h[key] = BigDecimal(val)
           end
         end
