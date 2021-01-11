@@ -14,7 +14,7 @@ Gem::Specification.new do |spec|
   spec.homepage      = 'https://github.com/DarthSim/money-distributed'
   spec.license       = 'MIT'
 
-  spec.required_ruby_version = '~> 2.5' # rubocop:disable Gemspec/RequiredRubyVersion
+  spec.required_ruby_version = '>= 2.5' # rubocop:disable Gemspec/RequiredRubyVersion
 
   spec.files = `git ls-files -z`.split("\x0").reject do |f|
     f.match(%r{^(test|spec|features)/})
@@ -24,7 +24,7 @@ Gem::Specification.new do |spec|
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ['lib']
 
-  spec.add_development_dependency 'rake'
+  spec.add_development_dependency 'rake', '>= 12.3.3'
   spec.add_development_dependency 'rspec'
   spec.add_development_dependency 'rubocop'
   spec.add_development_dependency 'timecop'
