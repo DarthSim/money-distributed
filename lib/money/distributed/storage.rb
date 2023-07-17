@@ -1,7 +1,5 @@
+# typed: true
 # frozen_string_literal: true
-
-require 'bigdecimal'
-require 'money/distributed/redis'
 
 class Money
   module Distributed

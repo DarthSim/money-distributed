@@ -1,6 +1,5 @@
+# typed: false
 # frozen_string_literal: true
-
-require 'money'
 
 class Money
   module Distributed

@@ -14,22 +14,27 @@ Gem::Specification.new do |spec|
   spec.homepage      = 'https://github.com/DarthSim/money-distributed'
   spec.license       = 'MIT'
 
-  spec.required_ruby_version = '>= 2.5'
-
-  spec.files = `git ls-files -z`.split("\x0").reject do |f|
-    f.match(%r{^(test|spec|features)/})
-  end
-
-  spec.bindir        = 'exe'
-  spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
-  spec.require_paths = ['lib']
-
-  spec.add_development_dependency 'rake', '>= 12.3.3'
-  spec.add_development_dependency 'rspec'
-  spec.add_development_dependency 'rubocop'
-  spec.add_development_dependency 'timecop'
+  spec.required_ruby_version = '>= 3.0'
+  spec.files                 = Dir[
+    'lib/**/*',
+    'sorbet/rbi/dsl/**/*.rbi',
+    'sorbet/rbi/shims/**/*.rbi',
+    'LICENSE',
+    'README.md',
+  ]
 
   spec.add_dependency 'connection_pool'
   spec.add_dependency 'money', '>= 6.6.0'
   spec.add_dependency 'redis'
+  spec.add_dependency 'sorbet'
+  spec.add_dependency 'sorbet-runtime'
+
+  spec.add_development_dependency 'rake', '>= 12.3.3'
+  spec.add_development_dependency 'rspec'
+  spec.add_development_dependency 'rubocop'
+  spec.add_development_dependency 'spoom'
+  spec.add_development_dependency 'tapioca'
+  spec.add_development_dependency 'timecop'
+
+  spec.metadata['rubygems_mfa_required'] = 'true'
 end

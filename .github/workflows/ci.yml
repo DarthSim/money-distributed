@@ -46,3 +46,6 @@ jobs:
 
       - name: Run Rubocop
         run: bundle exec rubocop
+
+      - name: Run Sorbet Typechecks
+        run: bundle exec spoom tc

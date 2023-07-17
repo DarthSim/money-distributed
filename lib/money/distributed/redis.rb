@@ -1,23 +1,37 @@
+# typed: true
 # frozen_string_literal: true
-
-require 'redis'
-require 'connection_pool'
 
 class Money
   module Distributed
     # Wrapper over different parameters that can be provided for redis
     class Redis
+      extend T::Sig
+
+      sig do
+        params(
+          redis: T.any(::Redis, ConnectionPool, Hash, Proc)
+        ).void
+      end
       def initialize(redis)
         @redis_proc = build_redis_proc(redis)
       end
 
+      sig do
+        params(
+          block: T.proc.returns(T.untyped)
+        ).returns(T.untyped)
+      end
       def exec(&block)
         @redis_proc.call(&block)
       end
 
       private
 
-      # rubocop: disable Metrics/MethodLength
+      sig do
+        params(
+          redis: T.any(::Redis, ConnectionPool, Hash, Proc)
+        ).returns(Proc)
+      end
       def build_redis_proc(redis)
         case redis
         when ::Redis
@@ -29,10 +43,9 @@ class Money
         when Proc
           redis
         else
-          raise ArgumentError, 'Redis, ConnectionPool, Hash or Proc is required'
+          T.absurd(redis)
         end
       end
-      # rubocop: enable Metrics/MethodLength
     end
   end
 end

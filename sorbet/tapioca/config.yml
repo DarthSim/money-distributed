@@ -1,0 +1,25 @@
+gem:
+  # Add your `gem` command parameters here:
+  #
+  exclude:
+    - rubocop
+    - tapioca
+    - spoom
+    - sorbet
+    - sorbet-runtime
+    - rbi
+    - rspec-core
+    - rspec-expectations
+    - rspec-mocks
+    - rspec-support
+    - rubocop-ast
+    - syntax_tree
+    - racc
+  # doc: true
+  # workers: 5
+dsl:
+  # Add your `dsl` command parameters here:
+  #
+  # exclude:
+  # - SomeGeneratorName
+  # workers: 5
