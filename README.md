@@ -1,6 +1,7 @@
 ![CI](https://github.com/swiknaba/money-distributed/workflows/CI/badge.svg)
 
 # money-distributed
+
 Money gem extension for distributed systems
 
 <hr />
@@ -26,7 +27,7 @@ There is a gem available for OXR: https://github.com/spk/money-open-exchange-rat
 redis = Redis.new(url: ENV.fetch('REDIS_URL') { 'redis://localhost:6379/1' })
 store = Money::Distributed::Storage.new(redis)
 
-# we fetch rates from Open Exchange Rates: 
+# we fetch rates from Open Exchange Rates:
 oxr = Money::Bank::OpenExchangeRatesBank.new(store)
 oxr.app_id = Rails.application.credentials.dig(:oxr, :api_key)
 
@@ -41,6 +42,7 @@ Money.default_bank = oxr
 ```
 
 The mentioned worker:
+
 ```ruby
 # app/workers/money_update_rates_worker.rb
 
@@ -53,12 +55,14 @@ class MoneyUpdateRatesWorker
   end
 end
 ```
+
 You might want to set up a cron job to trigger this worker regularly.
 Set the schedule to a shorter time-window than the configured TTL of the exchange rates.
 This avoids, that rates are expired and have to be fetched from remote during a request.
 
 
 You probably want to install the following gems:
+
 ```ruby
 # Gemfile
 
